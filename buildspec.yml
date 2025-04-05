@@ -6,10 +6,10 @@ phases:
   build:
     commands:
       - mvn clean package
-     # Move the JAR file from target/ to the root directory
+      # Move the JAR file from target/ to the root directory
       - echo "Moving JAR file to root folder"
-      - mv target/food-service-0.0.1-SNAPSHOT.jar .  # Moves the .jar file to the root directory of the build artifact
+      - mv target/*.jar .  # Moves the .jar file to the root directory of the build artifact
 
 artifacts:
   files:
-    - target/food-service-0.0.1-SNAPSHOT.jar
+    - "*.jar"  # Specify that the .jar file is the artifact to be deployed
