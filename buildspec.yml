@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: corretto21
+      java: corretto17
     commands:
       - echo Installing Maven...
       - yum install -y maven
@@ -20,13 +20,14 @@ phases:
 
   post_build:
     commands:
-      - echo Preparing artifact...
-      - mkdir -p target/deployment
-      - cp target/*.jar target/deployment/application.jar
-      - cd target/deployment
-      - zip -r ../springboot-app.zip .
-      - cd ../..
+      - echo Preparing deployment package...
+      - mkdir deployment
+      - cp target/*.jar deployment/application.jar
+      - cp Procfile deployment/
+      - cd deployment
+      - zip ../springboot-app.zip application.jar Procfile
+      - cd ..
 
 artifacts:
   files:
-    - target/springboot-app.zip
+    - springboot-app.zip
