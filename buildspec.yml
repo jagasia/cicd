@@ -22,7 +22,7 @@ phases:
     commands:
       - echo Preparing deployment package...
       - mkdir deployment
-      - cp target/*.jar deployment/application.jar
+      - cp $(find target -name "*.jar" | head -n 1) deployment/application.jar
       - cp Procfile deployment/
       - cd deployment
       - zip ../springboot-app.zip application.jar Procfile
